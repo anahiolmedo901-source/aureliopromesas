@@ -5,9 +5,9 @@ const foodProducts = [
     price: 8.99,
     description: "Hamburguesa de res con lechuga, tomate, cebolla y nuestra salsa especial.",
     category: "hamburguesas",
-    image: "https://img.icons8.com/emoji/200/hamburger-emoji.png",
-    rating: { rate: 4.5, count: 120 },
-    stock: 50
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
+    rating: { rate: 4.5, count: 10 },
+    stock: 10
   },
   {
     id: 2,
@@ -15,9 +15,9 @@ const foodProducts = [
     price: 10.49,
     description: "Jugosa hamburguesa de res con queso cheddar derretido y vegetales frescos.",
     category: "hamburguesas",
-    image: "https://img.icons8.com/emoji/200/hamburger-emoji.png",
-    rating: { rate: 4.7, count: 95 },
-    stock: 40
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
+    rating: { rate: 4.7, count: 8 },
+    stock: 8
   },
   {
     id: 3,
@@ -25,9 +25,9 @@ const foodProducts = [
     price: 11.99,
     description: "Hamburguesa con bacon crujiente, aros de cebolla y salsa BBQ.",
     category: "hamburguesas",
-    image: "https://img.icons8.com/emoji/200/hamburger-emoji.png",
-    rating: { rate: 4.8, count: 88 },
-    stock: 35
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
+    rating: { rate: 4.8, count: 6 },
+    stock: 6
   },
   {
     id: 4,
@@ -35,9 +35,9 @@ const foodProducts = [
     price: 2.99,
     description: "Papas fritas crujientes doradas a la perfección.",
     category: "papas",
-    image: "https://img.icons8.com/emoji/200/french-fries-emoji.png",
-    rating: { rate: 4.3, count: 200 },
-    stock: 100
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f35f.png",
+    rating: { rate: 4.3, count: 20 },
+    stock: 20
   },
   {
     id: 5,
@@ -45,9 +45,9 @@ const foodProducts = [
     price: 4.49,
     description: "Porción grande de papas fritas crujientes con sal marina.",
     category: "papas",
-    image: "https://img.icons8.com/emoji/200/french-fries-emoji.png",
-    rating: { rate: 4.4, count: 180 },
-    stock: 80
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f35f.png",
+    rating: { rate: 4.4, count: 15 },
+    stock: 15
   },
   {
     id: 6,
@@ -55,9 +55,9 @@ const foodProducts = [
     price: 5.99,
     description: "Papas fritas cubiertas con queso fundido y trozos de bacon.",
     category: "papas",
-    image: "https://img.icons8.com/emoji/200/french-fries-emoji.png",
-    rating: { rate: 4.6, count: 75 },
-    stock: 60
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f35f.png",
+    rating: { rate: 4.6, count: 7 },
+    stock: 7
   },
   {
     id: 7,
@@ -65,9 +65,9 @@ const foodProducts = [
     price: 6.99,
     description: "Pizza individual de pepperoni con queso mozzarella.",
     category: "pizzas",
-    image: "https://img.icons8.com/emoji/200/pizza-emoji.png",
-    rating: { rate: 4.2, count: 150 },
-    stock: 45
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f355.png",
+    rating: { rate: 4.2, count: 12 },
+    stock: 12
   },
   {
     id: 8,
@@ -75,9 +75,9 @@ const foodProducts = [
     price: 12.99,
     description: "Pizza grande de pepperoni con ingredientes frescos.",
     category: "pizzas",
-    image: "https://img.icons8.com/emoji/200/pizza-emoji.png",
-    rating: { rate: 4.5, count: 130 },
-    stock: 30
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f355.png",
+    rating: { rate: 4.5, count: 8 },
+    stock: 8
   },
   {
     id: 9,
@@ -85,9 +85,9 @@ const foodProducts = [
     price: 11.49,
     description: "Pizza con jamón, piña y queso mozzarella.",
     category: "pizzas",
-    image: "https://img.icons8.com/emoji/200/pizza-emoji.png",
-    rating: { rate: 4.1, count: 90 },
-    stock: 25
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f355.png",
+    rating: { rate: 4.1, count: 5 },
+    stock: 5
   },
   {
     id: 10,
@@ -95,9 +95,9 @@ const foodProducts = [
     price: 7.49,
     description: "Alitas de pollo bañadas en salsa BBQ o picante.",
     category: "alitas",
-    image: "https://img.icons8.com/emoji/200/chicken-emoji.png",
-    rating: { rate: 4.6, count: 110 },
-    stock: 40
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f357.png",
+    rating: { rate: 4.6, count: 10 },
+    stock: 10
   },
   {
     id: 11,
@@ -105,9 +105,9 @@ const foodProducts = [
     price: 12.99,
     description: "Docena de alitas de pollo con tu salsa favorita.",
     category: "alitas",
-    image: "https://img.icons8.com/emoji/200/chicken-emoji.png",
-    rating: { rate: 4.7, count: 85 },
-    stock: 35
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f357.png",
+    rating: { rate: 4.7, count: 6 },
+    stock: 6
   },
   {
     id: 12,
@@ -115,9 +115,9 @@ const foodProducts = [
     price: 8.99,
     description: "Alitas de pollo con salsa picante estilo buffalo.",
     category: "alitas",
-    image: "https://img.icons8.com/emoji/200/chicken-emoji.png",
-    rating: { rate: 4.4, count: 70 },
-    stock: 30
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f357.png",
+    rating: { rate: 4.4, count: 8 },
+    stock: 8
   },
   {
     id: 13,
@@ -125,9 +125,9 @@ const foodProducts = [
     price: 1.99,
     description: "Refresco de cola bien frío 500ml.",
     category: "bebidas",
-    image: "https://img.icons8.com/emoji/200/tropical-drink-emoji.png",
-    rating: { rate: 4.0, count: 300 },
-    stock: 200
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f964.png",
+    rating: { rate: 4.0, count: 30 },
+    stock: 30
   },
   {
     id: 14,
@@ -135,9 +135,9 @@ const foodProducts = [
     price: 3.99,
     description: "Malteada cremosa de vainilla con crema batida.",
     category: "bebidas",
-    image: "https://img.icons8.com/emoji/200/shake-emoji.png",
-    rating: { rate: 4.8, count: 160 },
-    stock: 50
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f964.png",
+    rating: { rate: 4.8, count: 10 },
+    stock: 10
   },
   {
     id: 15,
@@ -145,9 +145,9 @@ const foodProducts = [
     price: 3.99,
     description: "Malteada cremosa de chocolate con crema batida.",
     category: "bebidas",
-    image: "https://img.icons8.com/emoji/200/chocolate-milk-emoji.png",
-    rating: { rate: 4.9, count: 140 },
-    stock: 50
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f964.png",
+    rating: { rate: 4.9, count: 10 },
+    stock: 10
   },
   {
     id: 16,
@@ -155,9 +155,9 @@ const foodProducts = [
     price: 2.99,
     description: "Helado de vainilla cubierto con chocolate y nueces.",
     category: "postres",
-    image: "https://img.icons8.com/emoji/200/ice-cream-emoji.png",
-    rating: { rate: 4.5, count: 90 },
-    stock: 60
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f366.png",
+    rating: { rate: 4.5, count: 8 },
+    stock: 8
   },
   {
     id: 17,
@@ -165,9 +165,9 @@ const foodProducts = [
     price: 4.49,
     description: "Rebanada de pastel de chocolate con relleno cremoso.",
     category: "postres",
-    image: "https://img.icons8.com/emoji/200/cake-emoji.png",
-    rating: { rate: 4.6, count: 75 },
-    stock: 25
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f370.png",
+    rating: { rate: 4.6, count: 5 },
+    stock: 5
   },
   {
     id: 18,
@@ -175,9 +175,9 @@ const foodProducts = [
     price: 12.99,
     description: "Hamburguesa clásica con papas fritas medianas y refresco.",
     category: "combos",
-    image: "https://img.icons8.com/emoji/200/fast-food-emoji.png",
-    rating: { rate: 4.7, count: 210 },
-    stock: 30
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
+    rating: { rate: 4.7, count: 8 },
+    stock: 8
   },
   {
     id: 19,
@@ -185,9 +185,9 @@ const foodProducts = [
     price: 14.99,
     description: "Pizza personal con refresco y papas fritas.",
     category: "combos",
-    image: "https://img.icons8.com/emoji/200/pizza-emoji.png",
-    rating: { rate: 4.3, count: 95 },
-    stock: 25
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f355.png",
+    rating: { rate: 4.3, count: 6 },
+    stock: 6
   },
   {
     id: 20,
@@ -195,9 +195,9 @@ const foodProducts = [
     price: 24.99,
     description: "2 hamburguesas, papas grandes, 4 alitas y 2 refrescos.",
     category: "combos",
-    image: "https://img.icons8.com/emoji/200/fast-food-emoji.png",
-    rating: { rate: 4.9, count: 180 },
-    stock: 20
+    image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
+    rating: { rate: 4.9, count: 4 },
+    stock: 4
   }
 ];
 

@@ -3,6 +3,10 @@ import { useCart } from "../context/CartContext";
 export default function Cart() {
   const { items, dispatch, subtotal, iva, discount, total } = useCart();
 
+  function getStock(item) {
+    return item.rating?.count ?? item.stock ?? Infinity;
+  }
+
   if (items.length === 0) {
     return (
       <div className="cart-empty">
@@ -15,49 +19,60 @@ export default function Cart() {
   return (
     <div className="cart">
       <div className="cart-items">
-        {items.map((item) => (
-          <div key={item.id} className="cart-item">
-            <img src={item.image} alt={item.title} className="cart-item-img" />
-            <div className="cart-item-info">
-              <h4>{item.title}</h4>
-              <p className="cart-item-price">${item.price.toFixed(2)}</p>
-            </div>
-            <div className="cart-item-qty">
+        {items.map((item) => {
+          const stock = getStock(item);
+          return (
+            <div key={item.id} className="cart-item">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="cart-item-img"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
+              <div className="cart-item-info">
+                <h4>{item.title}</h4>
+                <p className="cart-item-price">${item.price.toFixed(2)}</p>
+              </div>
+              <div className="cart-item-qty">
+                <button
+                  className="btn btn-sm"
+                  onClick={() =>
+                    dispatch({
+                      type: "UPDATE_QUANTITY",
+                      payload: { id: item.id, quantity: item.quantity - 1 },
+                    })
+                  }
+                >
+                  -
+                </button>
+                <span>{item.quantity}</span>
+                <button
+                  className="btn btn-sm"
+                  disabled={item.quantity >= stock}
+                  onClick={() =>
+                    dispatch({
+                      type: "UPDATE_QUANTITY",
+                      payload: { id: item.id, quantity: item.quantity + 1 },
+                    })
+                  }
+                >
+                  +
+                </button>
+              </div>
+              <p className="cart-item-subtotal">
+                ${(item.price * item.quantity).toFixed(2)}
+              </p>
               <button
-                className="btn btn-sm"
-                onClick={() =>
-                  dispatch({
-                    type: "UPDATE_QUANTITY",
-                    payload: { id: item.id, quantity: item.quantity - 1 },
-                  })
-                }
+                className="btn btn-sm btn-danger"
+                onClick={() => dispatch({ type: "REMOVE_ITEM", payload: item.id })}
               >
-                -
-              </button>
-              <span>{item.quantity}</span>
-              <button
-                className="btn btn-sm"
-                onClick={() =>
-                  dispatch({
-                    type: "UPDATE_QUANTITY",
-                    payload: { id: item.id, quantity: item.quantity + 1 },
-                  })
-                }
-              >
-                +
+                &times;
               </button>
             </div>
-            <p className="cart-item-subtotal">
-              ${(item.price * item.quantity).toFixed(2)}
-            </p>
-            <button
-              className="btn btn-sm btn-danger"
-              onClick={() => dispatch({ type: "REMOVE_ITEM", payload: item.id })}
-            >
-              &times;
-            </button>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="cart-summary">

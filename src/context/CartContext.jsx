@@ -16,13 +16,14 @@ function loadCart() {
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_ITEM": {
-      const existing = state.find((i) => i.id === action.payload.id);
+      const { quantity = 1, ...product } = action.payload;
+      const existing = state.find((i) => i.id === product.id);
       if (existing) {
         return state.map((i) =>
-          i.id === action.payload.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === product.id ? { ...i, quantity: i.quantity + quantity } : i
         );
       }
-      return [...state, { ...action.payload, quantity: 1 }];
+      return [...state, { ...product, quantity }];
     }
     case "REMOVE_ITEM":
       return state.filter((i) => i.id !== action.payload);

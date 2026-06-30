@@ -7,18 +7,15 @@ function delay(ms) {
 }
 
 async function validateConnection() {
-  const res = await fetch("https://fakestoreapi.com/products?limit=1");
+  const res = await fetch("https://dummyjson.com/users?limit=1");
   if (!res.ok) throw new Error("Error de conexión con el servidor");
   return true;
 }
 
-async function validateInventory(items) {
-  const res = await fetch("https://fakestoreapi.com/products");
-  if (!res.ok) throw new Error("Error al validar inventario");
-  const products = await res.json();
+async function validateInventory(items, allProducts) {
   const stockMap = {};
-  for (const p of products) {
-    stockMap[p.id] = p.rating?.count ?? 999;
+  for (const p of allProducts) {
+    stockMap[p.id] = p.rating?.count ?? p.stock ?? 0;
   }
   for (const item of items) {
     if ((stockMap[item.id] ?? 0) < item.quantity) {
@@ -41,7 +38,7 @@ async function savePurchase(order) {
   return res.json();
 }
 
-export default function Checkout({ onDone }) {
+export default function Checkout({ products, onDone }) {
   const { items, subtotal, iva, discount, total, dispatch } = useCart();
   const { user } = useAuth();
   const [step, setStep] = useState(null);
@@ -62,7 +59,7 @@ export default function Checkout({ onDone }) {
 
       setStep("Validando inventario...");
       await delay(500);
-      await validateInventory(items);
+      await validateInventory(items, products);
 
       setStep("Calculando total...");
       await delay(500);

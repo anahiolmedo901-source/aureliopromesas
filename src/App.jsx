@@ -42,7 +42,7 @@ function AppContent() {
         {tab === "catalog" && <Catalog products={products} />}
         {tab === "cart" && (
           <>
-            <Cart />
+            <Cart products={products} />
             {user && (
               <div className="checkout-action">
                 <button
@@ -58,7 +58,7 @@ function AppContent() {
         {tab === "login" && (
           <Login onSuccess={() => setTab("catalog")} />
         )}
-        {tab === "checkout" && <Checkout onDone={handleCheckoutDone} />}
+        {tab === "checkout" && <Checkout products={products} onDone={handleCheckoutDone} />}
       </main>
     </div>
   );

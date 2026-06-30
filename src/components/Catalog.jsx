@@ -17,8 +17,13 @@ export default function Catalog({ products }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("Todas");
   const [sort, setSort] = useState("");
+  const [qty, setQty] = useState({});
 
-  const cartIds = new Set(items.map((i) => i.id));
+  const cartMap = useMemo(() => {
+    const map = {};
+    for (const i of items) map[i.id] = i.quantity;
+    return map;
+  }, [items]);
 
   const filtered = useMemo(() => {
     let result = [...products];
@@ -43,6 +48,28 @@ export default function Catalog({ products }) {
 
     return result;
   }, [products, search, category, sort]);
+
+  function getStock(product) {
+    return product.rating?.count ?? product.stock ?? 0;
+  }
+
+  function getAvailable(product) {
+    const inCart = cartMap[product.id] || 0;
+    return Math.max(0, getStock(product) - inCart);
+  }
+
+  function getQty(productId) {
+    return qty[productId] ?? 1;
+  }
+
+  function handleAdd(product) {
+    const selected = getQty(product.id);
+    dispatch({
+      type: "ADD_ITEM",
+      payload: { ...product, quantity: selected },
+    });
+    setQty((prev) => ({ ...prev, [product.id]: 1 }));
+  }
 
   return (
     <div className="catalog">
@@ -80,39 +107,82 @@ export default function Catalog({ products }) {
         <p className="empty-msg">No se encontraron productos.</p>
       ) : (
         <div className="product-grid">
-          {filtered.map((p) => (
-            <div key={p.id} className="product-card">
-              <img src={p.image} alt={p.title} className="product-img" />
-              <div className="product-body">
-                <h3 className="product-title">{p.title}</h3>
-                <span className="product-category">{p.category}</span>
-                <div className="product-meta">
-                  <span className="product-price">${p.price.toFixed(2)}</span>
-                  <span className="product-rating">
-                    &#9733; {p.rating?.rate ?? p.rating ?? "N/A"}
-                  </span>
+          {filtered.map((p) => {
+            const stock = getStock(p);
+            const available = getAvailable(p);
+            const selected = getQty(p.id);
+            const inCart = cartMap[p.id] || 0;
+
+            return (
+              <div key={p.id} className="product-card">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="product-img"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.nextSibling.style.display = "flex";
+                  }}
+                />
+                <div className="product-img-fallback">
+                  <span>{p.title.charAt(0)}</span>
                 </div>
-                <span className="product-stock">
-                  Stock: {p.rating?.count ?? p.stock ?? "N/A"}
-                </span>
-                {cartIds.has(p.id) ? (
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={() => dispatch({ type: "REMOVE_ITEM", payload: p.id })}
-                  >
-                    Quitar
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-sm"
-                    onClick={() => dispatch({ type: "ADD_ITEM", payload: p })}
-                  >
-                    Agregar
-                  </button>
-                )}
+                <div className="product-body">
+                  <h3 className="product-title">{p.title}</h3>
+                  <span className="product-category">{p.category}</span>
+                  <div className="product-meta">
+                    <span className="product-price">${p.price.toFixed(2)}</span>
+                    <span className="product-rating">
+                      &#9733; {p.rating?.rate ?? "N/A"}
+                    </span>
+                  </div>
+                  <span className="product-stock">
+                    Stock: {stock} {inCart > 0 && `(${inCart} en carrito)`}
+                  </span>
+
+                  {available > 0 ? (
+                    <div className="qty-selector">
+                      <button
+                        className="btn btn-sm"
+                        disabled={selected <= 1}
+                        onClick={() =>
+                          setQty((prev) => ({
+                            ...prev,
+                            [p.id]: Math.max(1, selected - 1),
+                          }))
+                        }
+                      >
+                        -
+                      </button>
+                      <span className="qty-value">{selected}</span>
+                      <button
+                        className="btn btn-sm"
+                        disabled={selected >= available}
+                        onClick={() =>
+                          setQty((prev) => ({
+                            ...prev,
+                            [p.id]: Math.min(available, selected + 1),
+                          }))
+                        }
+                      >
+                        +
+                      </button>
+                      <button
+                        className="btn btn-sm btn-primary"
+                        onClick={() => handleAdd(p)}
+                      >
+                        Agregar
+                      </button>
+                    </div>
+                  ) : (
+                    <button className="btn btn-sm" disabled>
+                      Sin stock
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
