@@ -17,7 +17,8 @@ const foodProducts = [
     category: "hamburguesas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
     rating: { rate: 4.7, count: 8 },
-    stock: 8
+    stock: 8,
+    discount: 15  // 15% de descuento
   },
   {
     id: 3,
@@ -27,7 +28,8 @@ const foodProducts = [
     category: "hamburguesas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
     rating: { rate: 4.8, count: 6 },
-    stock: 6
+    stock: 6,
+    discount: 20
   },
   {
     id: 4,
@@ -47,7 +49,8 @@ const foodProducts = [
     category: "papas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f35f.png",
     rating: { rate: 4.4, count: 15 },
-    stock: 15
+    stock: 15,
+    discount: 10
   },
   {
     id: 6,
@@ -57,7 +60,8 @@ const foodProducts = [
     category: "papas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f35f.png",
     rating: { rate: 4.6, count: 7 },
-    stock: 7
+    stock: 7,
+    discount: 25
   },
   {
     id: 7,
@@ -77,7 +81,8 @@ const foodProducts = [
     category: "pizzas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f355.png",
     rating: { rate: 4.5, count: 8 },
-    stock: 8
+    stock: 8,
+    discount: 12
   },
   {
     id: 9,
@@ -97,7 +102,8 @@ const foodProducts = [
     category: "alitas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f357.png",
     rating: { rate: 4.6, count: 10 },
-    stock: 10
+    stock: 10,
+    discount: 20
   },
   {
     id: 11,
@@ -117,7 +123,8 @@ const foodProducts = [
     category: "alitas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f357.png",
     rating: { rate: 4.4, count: 8 },
-    stock: 8
+    stock: 8,
+    discount: 15
   },
   {
     id: 13,
@@ -137,7 +144,8 @@ const foodProducts = [
     category: "bebidas",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f964.png",
     rating: { rate: 4.8, count: 10 },
-    stock: 10
+    stock: 10,
+    discount: 10
   },
   {
     id: 15,
@@ -157,7 +165,8 @@ const foodProducts = [
     category: "postres",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f366.png",
     rating: { rate: 4.5, count: 8 },
-    stock: 8
+    stock: 8,
+    discount: 30
   },
   {
     id: 17,
@@ -177,7 +186,8 @@ const foodProducts = [
     category: "combos",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
     rating: { rate: 4.7, count: 8 },
-    stock: 8
+    stock: 8,
+    discount: 18
   },
   {
     id: 19,
@@ -197,7 +207,8 @@ const foodProducts = [
     category: "combos",
     image: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f354.png",
     rating: { rate: 4.9, count: 4 },
-    stock: 4
+    stock: 4,
+    discount: 22
   }
 ];
 

@@ -44,7 +44,7 @@ export default function Catalog({ products }) {
     if (sort === "price-asc") result.sort((a, b) => a.price - b.price);
     else if (sort === "price-desc") result.sort((a, b) => b.price - a.price);
     else if (sort === "name-asc") result.sort((a, b) => a.title.localeCompare(b.title));
-    else if (sort === "name-desc") result.sort((a, b) => b.title.localeCompare(a.title));
+    else if (sort === "name-desc") result.sort((a, b) => b.title.localeCompare(b.title));
 
     return result;
   }, [products, search, category, sort]);
@@ -58,15 +58,26 @@ export default function Catalog({ products }) {
     return Math.max(0, getStock(product) - inCart);
   }
 
+  function getFinalPrice(product) {
+    const discount = product.discount || 0;
+    return discount > 0 ? product.price * (1 - discount / 100) : product.price;
+  }
+
   function getQty(productId) {
     return qty[productId] ?? 1;
   }
 
   function handleAdd(product) {
     const selected = getQty(product.id);
+    const finalPrice = getFinalPrice(product);
+    
     dispatch({
       type: "ADD_ITEM",
-      payload: { ...product, quantity: selected },
+      payload: { 
+        ...product, 
+        quantity: selected,
+        finalPrice
+      }
     });
     setQty((prev) => ({ ...prev, [product.id]: 1 }));
   }
@@ -112,6 +123,8 @@ export default function Catalog({ products }) {
             const available = getAvailable(p);
             const selected = getQty(p.id);
             const inCart = cartMap[p.id] || 0;
+            const finalPrice = getFinalPrice(p);
+            const hasDiscount = p.discount > 0;
 
             return (
               <div key={p.id} className="product-card">
@@ -131,9 +144,23 @@ export default function Catalog({ products }) {
                   <h3 className="product-title">{p.title}</h3>
                   <span className="product-category">{p.category}</span>
                   <div className="product-meta">
-                    <span className="product-price">${p.price.toFixed(2)}</span>
+                    <div>
+                      {hasDiscount ? (
+                        <>
+                          <span className="product-price" style={{ textDecoration: 'line-through', color: '#999', fontSize: '14px' }}>
+                            ${p.price.toFixed(2)}
+                          </span><br />
+                          <span style={{ color: '#e74c3c', fontWeight: '700', fontSize: '20px' }}>
+                            ${finalPrice.toFixed(2)}
+                          </span>
+                          <span style={{ color: '#27ae60', fontSize: '13px' }}> (-{p.discount}%)</span>
+                        </>
+                      ) : (
+                        <span className="product-price">${p.price.toFixed(2)}</span>
+                      )}
+                    </div>
                     <span className="product-rating">
-                      &#9733; {p.rating?.rate ?? "N/A"}
+                      ★ {p.rating?.rate ?? "N/A"}
                     </span>
                   </div>
                   <span className="product-stock">
@@ -152,11 +179,11 @@ export default function Catalog({ products }) {
                           }))
                         }
                       >
-                        -
+                        −
                       </button>
                       <span className="qty-value">{selected}</span>
                       <button
-                        className="btn btn-sm"
+                        className="btn btn-sm btn-success"
                         disabled={selected >= available}
                         onClick={() =>
                           setQty((prev) => ({
